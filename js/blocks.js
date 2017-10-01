@@ -6,10 +6,21 @@
 var api_url = "https://laravel-snippets.herokuapp.com";
 
 var total_pages,
-  current_page;
+  current_page,
+  search_query;
 
-function get_blocks(page, refresh) {
+function get_blocks(page, refresh, query) {
+  console.log(search_query);
+  if(typeof query == "string" && query.trim().length < 2) {
+    search_query = null;
+    page = current_page;
+    refresh = false;
+  } else {
+    search_query = query || search_query;
+  }
+  console.log(search_query);
   // Validate page
+  page = page || current_page;
   if (page < 1 || (total_pages ? page > total_pages : false) ||
     (refresh ? false : page == current_page)) {
     return false;
@@ -18,7 +29,7 @@ function get_blocks(page, refresh) {
   if (! blocks) {return false;}
   blocks.html('');
   // Ajax call
-  var data = {page: page};
+  var data = {page: page, keyword: search_query};
   $.ajax({url: api_url+'/api/blocks', data: data,
     success: function(response, status){
       if (response.data) {
@@ -74,6 +85,15 @@ function get_blocks(page, refresh) {
       }
     }
   });
+}
+
+function block_search(query) {
+  return get_blocks(1, true, query);
+}
+
+function clear_search() {
+  search_query = null; 
+  return false;
 }
 
 function render_paging() {

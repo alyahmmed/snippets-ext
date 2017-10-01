@@ -26,7 +26,15 @@
           <br>
 
           <!-- Trigger the modal with a button -->
-          <button id="newBlockBtn" type="button" class="btn btn-info">New Block</button>
+          <button id="newBlockBtn" type="button" class="btn btn-success" style="position: fixed;bottom: 10px;right: 10px">NEW</button>
+
+          <form id="blockSearchForm">
+            <div class="col-md-8">
+              <input type="text" name="keyword" class="form-control"/>
+              <button id="searchBlockBtn" type="button" class="btn btn-info" style="float: right;top: -34px;position: relative;">Search</button>
+              <a href="#" id="clearSearchBtn">clear search</a>
+            </div>
+          </form>
           <br><br>
 
           <div id="block_details" style="display: none;">

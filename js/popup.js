@@ -40,4 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     return false;
   });
+
+  $('#blockSearchForm').submit(function() {
+    $('#searchBlockBtn').click();
+    return false;
+  });
+
+  $('#searchBlockBtn').click(function() {
+    var query = $(this).prev('input[name="keyword"]').val();
+    block_search(query);
+    return false;
+  });
+
+  $('#clearSearchBtn').click(function() {
+    $(this).prev().prev('input[name="keyword"]').val('');
+    clear_search();
+    get_blocks(1, true);
+    return false;
+  });
 });
