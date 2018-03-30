@@ -3,7 +3,8 @@
   file: blocks.js
  */
 
-var api_url = "https://laravel-snippets.herokuapp.com";
+var api_url = "https://snippets-api.appspot.com";
+// var api_url = "http://localhost/projects/gae_projects/snippets-api/public";
 
 var total_pages,
   current_page,
